@@ -7,13 +7,24 @@
     <title>Quiz App</title>
 </head>
 <body>
-    <div class="quiz-container" id="quiz">
-        <h2 id="question">Question will appear here</h2>
-        <div id="answers" class="answers">
-            <!-- Answer buttons will be dynamically added here -->
+    <div class="quiz-container">
+        <h1>Quiz App</h1>
+        <div id="quiz" class="quiz-content">
+            <div id="question-container" class="question-container">
+                <h2 class="question" id="question">Question will appear here</h2>
+                <div class="answer-buttons" id="answers">
+                    <!-- Answer buttons will be dynamically added here -->
+                </div>
+            </div>
+            <div class="controls">
+                <button id="next-btn" class="btn" onclick="nextQuestion()">Next</button>
+                <button id="start-btn" class="btn" onclick="startQuiz()">Start Quiz</button>
+                <button id="highscore-btn" class="btn" onclick="showHighScore()">View High Score</button>
+            </div>
+            <p class="score" id="score"></p>
         </div>
-        <button id="next-btn" class="btn" onclick="nextQuestion()">Next</button>
     </div>
-<script src="script.js" defer></script>
+
+    <script src="script.js" defer></script>
 </body>
 </html>
