@@ -1,85 +1,111 @@
-/* Basic Reset */
-* {
+/* General Styles */
+body {
+    background: url('https://i.pinimg.com/originals/db/34/d4/db34d40b271fb59477621550bf73ea0b.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background-color: #f3f4f6;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-}
-
-/* Container */
-.quiz-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
-    text-align: center;
+    height: 100vh;
+    overflow: hidden;
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 2rem;
+    font-size: 3rem;
+    color: #ffeb3b; /* Bright yellow color for better contrast */
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
 }
 
-/* Question Section */
-.question {
+/* Best of Luck Message */
+.best-of-luck {
     font-size: 1.5rem;
-    margin-bottom: 20px;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-/* Answer Buttons */
-.answer-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 20px;
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-button {
-    padding: 10px 20px;
+/* Quiz Container with Thematic Style */
+.quiz-container {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    border: 2px solid #ffeb3b;
+}
+
+.question-container {
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Buttons */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 1.2rem;
     cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
-    background-color: #4f46e5;
-    color: white;
+.btn:hover {
+    background-color: #2563eb;
+    transform: translateY(-3px);
 }
 
-/* Button Variants */
-button.correct {
-    background-color: #34d399;
-    color: white;
+.btn.selected {
+    background-color: #ffb703;
+    color: #ffffff;
 }
 
-button.wrong {
-    background-color: #f87171;
-    color: white;
-}
-
-/* Controls Section */
 .controls {
     display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: space-between;
 }
 
-/* Score Display */
 .score {
-    margin-top: 20px;
     font-size: 1.2rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    margin-top: 1rem;
 }
+
+/* High Score Button */
+#highscore-btn {
+    background-color: #f59e0b;
+}
+
+#highscore-btn:hover {
+    background-color: #d97706;
+}
+
+.btn.correct {
+    background-color: green !important;
+  }
+  .btn.wrong {
+    background-color: red !important;
+  }
+  
