@@ -295,3 +295,22 @@ function startQuiz() {
     showQuestion();
 }
 
+function showQuestion() {
+    const questionElement = document.getElementById('question');
+    const answersElement = document.getElementById('answers');
+    
+    questionElement.innerText = questions[currentQuestionIndex].question;
+    answersElement.innerHTML = '';
+    answerLocked = false;
+
+    questions[currentQuestionIndex].answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.className = 'btn';
+        button.onclick = () => selectAnswer(answer, button);
+        answersElement.appendChild(button);
+    });
+
+    document.getElementById('next-btn').style.display = 'none';
+}
+
