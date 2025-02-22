@@ -272,4 +272,26 @@ const questions = [
     }
 ];
 
+let currentQuestionIndex = 0;
+let score = 0;
+let answerLocked = false;
+
+window.onload = () => {
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('lock-btn').style.display = 'none';
+    document.getElementById('start-btn').addEventListener('click', startQuiz);
+    document.getElementById('next-btn').addEventListener('click', nextQuestion);
+    document.getElementById('lock-btn').addEventListener('click', lockAnswer);
+};
+
+function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    answerLocked = false;
+    document.getElementById('score').innerText = '';
+    document.getElementById('start-btn').style.display = 'none';
+    document.getElementById('next-btn').style.display = 'none';
+    document.getElementById('lock-btn').style.display = 'block';
+    showQuestion();
+}
 
