@@ -314,3 +314,50 @@ function showQuestion() {
     document.getElementById('next-btn').style.display = 'none';
 }
 
+let selectedAnswer = null;
+
+function selectAnswer(answer, button) {
+    if (!answerLocked) {
+        selectedAnswer = answer;
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        button.classList.add('selected');
+    }
+}
+
+function lockAnswer() {
+    if (selectedAnswer && !answerLocked) {
+        answerLocked = true;
+        document.getElementById('lock-btn').style.display = 'none';
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            if (btn.innerText === selectedAnswer.text && selectedAnswer.correct) {
+                btn.style.backgroundColor = 'green';
+            } else if (btn.innerText === selectedAnswer.text && !selectedAnswer.correct) {
+                btn.style.backgroundColor = 'red';
+            } else if (!selectedAnswer.correct && questions[currentQuestionIndex].answers.find(a => a.correct && a.text === btn.innerText)) {
+                btn.style.backgroundColor = 'green';
+            }
+        });
+
+        if (selectedAnswer.correct) {
+            score++;
+        }
+        document.getElementById('score').innerText = `Score: ${score}`;
+        document.getElementById('next-btn').style.display = 'block';
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        selectedAnswer = null;
+        answerLocked = false;
+        document.getElementById('lock-btn').style.display = 'block';
+        showQuestion();
+    } else {
+        document.getElementById('score').innerText = `Quiz Completed! Final Score: ${score} / ${questions.length}`;
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('start-btn').style.display = 'block';
+    }
+}
