@@ -6,34 +6,22 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     overflow: hidden;
 }
 
+/* Header Styles */
 h1 {
     font-size: 3rem;
-    color: #ffeb3b; /* Bright yellow color for better contrast */
+    color: #ffeb3b; 
     margin-bottom: 1rem;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
 }
 
-/* Best of Luck Message */
-.best-of-luck {
-    font-size: 1.5rem;
-    color: #ffffff;
-    margin-bottom: 1rem;
-    animation: fadeIn 2s ease-in-out;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-}
-
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Quiz Container with Thematic Style */
+/* Quiz Container */
 .quiz-container {
     background: rgba(0, 0, 0, 0.7);
     padding: 2rem;
@@ -43,6 +31,7 @@ h1 {
     width: 100%;
     backdrop-filter: blur(10px);
     border: 2px solid #ffeb3b;
+    overflow-y: auto;
 }
 
 .question-container {
@@ -76,11 +65,6 @@ h2 {
     transform: translateY(-3px);
 }
 
-.btn.selected {
-    background-color: #ffb703;
-    color: #ffffff;
-}
-
 .controls {
     display: flex;
     justify-content: space-between;
@@ -93,19 +77,65 @@ h2 {
     margin-top: 1rem;
 }
 
-/* High Score Button */
-#highscore-btn {
-    background-color: #f59e0b;
+/* Footer */
+.footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffeb3b;
+    padding: 15px 0;
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid #ffeb3b;
+    position: absolute;
+    bottom: 0;
 }
 
-#highscore-btn:hover {
-    background-color: #d97706;
+.footer p {
+    margin: 5px 0;
+    font-size: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.btn.correct {
-    background-color: green !important;
-  }
-  .btn.wrong {
-    background-color: red !important;
-  }
-  
+/* Social Buttons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.github {
+    background-color: #333;
+}
+
+.github:hover {
+    background-color: #555;
+}
+
+.linkedin {
+    background-color: #0a66c2;
+}
+
+.linkedin:hover {
+    background-color: #084a9c;
+}
+
+.instagram {
+    background-color: #e1306c;
+}
+
+.instagram:hover {
+    background-color: #c2185b;
+}
