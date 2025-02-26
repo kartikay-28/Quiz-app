@@ -275,6 +275,11 @@ const questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 let answerLocked = false;
+let selectedAnswer = null;
+
+// Timer variables
+let timeLeft = 30;
+let timerInterval;
 
 window.onload = () => {
     document.getElementById('next-btn').style.display = 'none';
@@ -292,8 +297,30 @@ function startQuiz() {
     document.getElementById('start-btn').style.display = 'none';
     document.getElementById('next-btn').style.display = 'none';
     document.getElementById('lock-btn').style.display = 'block';
+
+    // Hide the footer when the quiz starts
+    document.querySelector('.footer').style.display = 'none';
+    
     showQuestion();
 }
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        selectedAnswer = null;
+        answerLocked = false;
+        document.getElementById('lock-btn').style.display = 'block';
+        showQuestion();
+    } else {
+        document.getElementById('score').innerText = `Quiz Completed! Final Score: ${score} / ${questions.length}`;
+        document.getElementById('next-btn').style.display = 'none';
+        document.getElementById('start-btn').style.display = 'block';
+
+        // Show the footer when the quiz ends
+        document.querySelector('.footer').style.display = 'block';
+    }
+}
+
 
 function showQuestion() {
     const questionElement = document.getElementById('question');
@@ -302,6 +329,7 @@ function showQuestion() {
     questionElement.innerText = questions[currentQuestionIndex].question;
     answersElement.innerHTML = '';
     answerLocked = false;
+    selectedAnswer = null;
 
     questions[currentQuestionIndex].answers.forEach(answer => {
         const button = document.createElement('button');
@@ -312,23 +340,31 @@ function showQuestion() {
     });
 
     document.getElementById('next-btn').style.display = 'none';
-}
+    document.getElementById('lock-btn').style.display = 'block';
 
-let selectedAnswer = null;
+    resetTimer(); // Reset and start the timer for each question
+}
 
 function selectAnswer(answer, button) {
     if (!answerLocked) {
         selectedAnswer = answer;
-        const buttons = document.querySelectorAll('.btn');
+
+        // Remove 'selected' class from all buttons
+        const buttons = document.querySelectorAll('.answer-buttons .btn');
         buttons.forEach(btn => btn.classList.remove('selected'));
+
+        // Add 'selected' class to the clicked button
         button.classList.add('selected');
     }
 }
+
 
 function lockAnswer() {
     if (selectedAnswer && !answerLocked) {
         answerLocked = true;
         document.getElementById('lock-btn').style.display = 'none';
+        clearInterval(timerInterval); // Stop the timer when answer is locked
+
         const buttons = document.querySelectorAll('.btn');
         buttons.forEach(btn => {
             if (btn.innerText === selectedAnswer.text && selectedAnswer.correct) {
@@ -348,16 +384,31 @@ function lockAnswer() {
     }
 }
 
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        selectedAnswer = null;
-        answerLocked = false;
-        document.getElementById('lock-btn').style.display = 'block';
-        showQuestion();
-    } else {
-        document.getElementById('score').innerText = `Quiz Completed! Final Score: ${score} / ${questions.length}`;
-        document.getElementById('next-btn').style.display = 'none';
-        document.getElementById('start-btn').style.display = 'block';
-    }
+
+// Timer Functions
+function startTimer() {
+    timeLeft = 30;
+    document.getElementById('timer').textContent = formatTime(timeLeft);
+
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').textContent = formatTime(timeLeft);
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert('Time is up!');
+            lockAnswer(); // Automatically lock answer when time runs out
+        }
+    }, 1000);
+}
+
+function resetTimer() {
+    clearInterval(timerInterval);
+    startTimer();
+}
+
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
