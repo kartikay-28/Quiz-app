@@ -17,11 +17,16 @@
                 </div>
             </div>
             <div class="controls">
-                <button id="start-btn" class="btn">Start Quiz</button>
+                <button id="start-btn" class="btn" onclick="startQuiz()">Start Quiz</button>
                 <button id="lock-btn" class="btn">Lock Answer</button>
                 <button id="next-btn" class="btn">Next</button>
             </div>
             <p class="score" id="score"></p>
+        </div>
+        
+        <!-- Timer Display -->
+        <div class="timer-container">
+            <h2>Time Remaining: <span id="timer" class="timer">00:30</span></h2>
         </div>
     </div>
 
