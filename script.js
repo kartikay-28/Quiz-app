@@ -277,6 +277,8 @@ let score = 0;
 let answerLocked = false;
 let selectedAnswer = null;
 
+let shuffledQuestions = shuffleQuestions(questions);
+
 // Timer variables
 let timeLeft = 30;
 let timerInterval;
@@ -356,6 +358,14 @@ function selectAnswer(answer, button) {
         // Add 'selected' class to the clicked button
         button.classList.add('selected');
     }
+}
+
+function shuffleQuestions(questions) {
+    for (let i = questions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]]; // Swap elements
+    }
+    return questions;
 }
 
 
