@@ -2,6 +2,8 @@
 
 A simple and interactive Quiz App built using **HTML, CSS, and JavaScript**. Users can answer multiple-choice questions, track their scores, and get a final result at the end of the quiz. 🏆
 
+Live quiz app - https://k28-quiz-app.netlify.app/
+
 ## ✨ Features
 - ✅ Dynamic question rendering
 - 🎨 Answer selection with highlighting
